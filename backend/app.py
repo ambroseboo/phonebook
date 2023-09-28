@@ -5,7 +5,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 def get_db_connection():
-    result = urlparse("postgres://phonebook_db_5khj_user:47CBMhB2Ubh3nfWGDepjnEIm97C7ndrk@dpg-ckaqt5ciibqc73b64mlg-a.oregon-postgres.render.com/phonebook_db_5khj")
+    result = urlparse("postgres://phonebook_db_2b2q_user:w9BUub1vm0NcjayoxmOyTEr6GiWDyUu6@dpg-ckarld7s0fgc73dnpadg-a.singapore-postgres.render.com/phonebook_db_2b2q")
     username = result.username
     password = result.password
     database = result.path[1:]
