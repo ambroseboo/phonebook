@@ -33,17 +33,31 @@ export function Homepage() {
     const handleSubmit = async (event) => {
         event.preventDefault()
 
-        axios.get('/data/' + filter)
-        .then((response) => {
-        const res = response.data
-        setData(res)
-        }).catch((error) => {
-        if (error.response) {
-            console.log(error.response)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-            }
-        })
+        if (filter === '') {
+            axios.get('/data')
+            .then((response) => {
+            const res = response.data
+            setData(res)
+            }).catch((error) => {
+            if (error.response) {
+                console.log(error.response)
+                console.log(error.response.status)
+                console.log(error.response.headers)
+                }
+            })
+        } else {
+            axios.get('/data/' + filter)
+            .then((response) => {
+            const res = response.data
+            setData(res)
+            }).catch((error) => {
+            if (error.response) {
+                console.log(error.response)
+                console.log(error.response.status)
+                console.log(error.response.headers)
+                }
+            })
+        }
     }
 
     function deleteContact(id) {

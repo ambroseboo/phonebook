@@ -1,15 +1,24 @@
-import os
+from urllib.parse import urlparse
 import psycopg2
 from flask import Flask, request
 
 app = Flask(__name__)
 
 def get_db_connection():
-    conn = psycopg2.connect(host='localhost',
-                            database='phonebook_db',
-                            user=os.environ['DB_USERNAME'],
-                            password=os.environ['DB_PASSWORD'])
-    return conn
+    result = urlparse("postgres://phonebook_db_5khj_user:47CBMhB2Ubh3nfWGDepjnEIm97C7ndrk@dpg-ckaqt5ciibqc73b64mlg-a.oregon-postgres.render.com/phonebook_db_5khj")
+    username = result.username
+    password = result.password
+    database = result.path[1:]
+    hostname = result.hostname
+    port = result.port
+    connection = psycopg2.connect(
+        database = database,
+        user = username,
+        password = password,
+        host = hostname,
+        port = port
+    )
+    return connection
 
 
 @app.route('/data')
