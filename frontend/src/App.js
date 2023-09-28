@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Homepage } from './components/Homepage.js';
 import { CreateForm } from './components/CreateForm.js';
 import { EditForm } from './components/EditForm.js';
+import { NavBar } from './components/NavBar.js'; 
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -10,6 +11,7 @@ export default function App() {
 
   return (
     <div>
+      <NavBar/>
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />

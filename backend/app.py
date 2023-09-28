@@ -97,3 +97,23 @@ def delete(id):
     cur.close()
     conn.close()
     return '', 200
+
+@app.route('/data/<filter>')
+def filter(filter):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM phonebook WHERE name LIKE '%" + filter + "%';")
+    columns = list(cur.description)
+    phonebook = cur.fetchall()
+
+    results = []
+    for row in phonebook:
+        row_dict = {}
+        for i, col in enumerate(columns):
+            row_dict[col.name] = row[i]
+        results.append(row_dict)
+        
+    cur.close()
+    conn.close()
+
+    return results
