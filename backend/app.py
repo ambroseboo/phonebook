@@ -84,3 +84,16 @@ def edit(id):
         cur.close()
         conn.close()
         return '', 200
+    
+@app.route('/<id>', methods = ['DELETE'])
+def delete(id):
+    print('here')
+    conn = get_db_connection()
+    cur = conn.cursor()
+    query = "DELETE FROM phonebook WHERE id = " + id + ";"
+    cur.execute(query)
+    conn.commit()
+
+    cur.close()
+    conn.close()
+    return '', 200

@@ -14,7 +14,6 @@ export function EditForm() {
 
     const handleChange = (event) => {
         setState({...state, [event.target.name]: event.target.value})
-        console.log(state)
     }
 
     useEffect(() => {
@@ -32,6 +31,8 @@ export function EditForm() {
     }, [])
 
     const handleSubmit = async (event) => {
+        event.preventDefault()
+
         axios.post(`/edit/${params.id}`, {
             name: state.name,
             phone_number: state.phone_number,
